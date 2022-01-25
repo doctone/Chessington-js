@@ -29,15 +29,18 @@ describe('King', () => {
         moves.should.deep.include.members(expectedMoves);
     });
 
-    it('cannot make any other moves', () => {
+    it('caps the edge of the board', () => {
         const king = new King(Player.WHITE);
-        board.setPiece(Square.at(2, 5), king);
+        board.setPiece(Square.at(0, 5), king);
 
         const moves = king.getAvailableMoves(board);
 
-        moves.should.have.length(8);
-    });
+        const expectedMoves = [
+            Square.at(0, 4), Square.at(0, 6),
+            Square.at(1, 4), Square.at(1, 5), Square.at(1, 6),
+        ]
 
-    it('')
+        moves.should.deep.include.members(expectedMoves);
+    })
 
 });
