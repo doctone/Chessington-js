@@ -7,11 +7,14 @@
         {
             "type": "pwa-node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Run tests",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\src\\index.js"
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "test"
+            ],
         }
     ]
 }
