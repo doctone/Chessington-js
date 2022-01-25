@@ -24,11 +24,3 @@ export default class Rook extends Piece {
         return moves
     }
 }
-
-// [1,2]
-/* [
-    [0,2],
-    [2,2]
-
-]
-*/
