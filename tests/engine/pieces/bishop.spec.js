@@ -32,4 +32,13 @@ describe('Bishop', () => {
 
     });
 
+    it('cannot make any other moves', () => {
+        const bishop = new Bishop(Player.WHITE);
+        board.setPiece(Square.at(2, 5), bishop);
+
+        const moves = bishop.getAvailableMoves(board);
+
+        moves.should.have.length(11);
+    });
+
 });

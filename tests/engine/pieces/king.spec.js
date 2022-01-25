@@ -39,7 +39,7 @@ describe('King', () => {
             Square.at(0, 4), Square.at(0, 6),
             Square.at(1, 4), Square.at(1, 5), Square.at(1, 6),
         ]
-
+        moves.should.deep.include.members(expectedMoves);
     })
 
 });

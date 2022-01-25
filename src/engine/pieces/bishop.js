@@ -9,23 +9,16 @@ export default class Bishop extends Piece {
     getAvailableMoves(board) {
         let l = board.findPiece(this);
         let moves = [];
-        for (let i=1; i<7; i++){
+        for (let i=1; i<8; i++){
             // towards top right corner
-                moves.push(
-                    Square.at(l.row+i, l.col+i),
-                    Square.at(l.row-i, l.col+i),
-                    Square.at(l.row-i, l.col-i),
-                    Square.at(l.row+i, l.col-i)
-                )
-            }
-            return moves;
+            if (l.row+i <= 7 && l.col+i <= 7) moves.push(Square.at(l.row+i, l.col+i))
+            if (l.row-i >= 0 && l.col+i <= 7) moves.push(Square.at(l.row-i, l.col+i))
+            if (l.row-i >= 0 && l.row-i >= 0) moves.push(Square.at(l.row-i, l.col-i));
+            if (l.row+i <= 7 && l.col-i >= 0) moves.push(Square.at(l.row+i, l.col-i));
+            
+            console.log(moves);
         }
-
+        return moves;
     }
 
-/*
-[
-    [2,5]
-    [0,]
-]
-*/
+}
