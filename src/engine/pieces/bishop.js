@@ -15,8 +15,6 @@ export default class Bishop extends Piece {
             if (l.row-i >= 0 && l.col+i <= 7) moves.push(Square.at(l.row-i, l.col+i))
             if (l.row-i >= 0 && l.row-i >= 0) moves.push(Square.at(l.row-i, l.col-i));
             if (l.row+i <= 7 && l.col-i >= 0) moves.push(Square.at(l.row+i, l.col-i));
-            
-            console.log(moves);
         }
         return moves;
     }
