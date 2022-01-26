@@ -14,10 +14,15 @@ export default class Queen extends Piece {
         const bishop = new Bishop(Player.WHITE);
         const rook = new Rook(Player.WHITE);
         let l = board.findPiece(this);
+
+        // put bishop on the same square and get its moves
         board.setPiece(Square.at(l.row, l.col), bishop);
         let BishopMoves = bishop.getAvailableMoves(board);
+        // put rook on the same square and get its moves
         board.setPiece(Square.at(l.row, l.col), rook);
         let RookMoves = rook.getAvailableMoves(board);
+
+        //combine moves
         let moves = RookMoves.concat(BishopMoves);
         return moves;
     }

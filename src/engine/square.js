@@ -15,4 +15,8 @@ export default class Square {
     toString() {
         return `Row ${this.row}, Col ${this.col}`;
     }
+
+    static is_valid(row,col) {
+        return (row<=7 && col<=7 && row>=0 && col>=0);
+    }
 }
