@@ -11,4 +11,10 @@ export default class Piece {
         const currentSquare = board.findPiece(this);
         board.movePiece(currentSquare, newSquare);
     }
+
+    trimAvailableMoves(board){
+        let availableMoves = this.getAvailableMoves(board)
+        .filter(square => this.player !== board.getPiece(square).player);
+        return availableMoves
+    }
 }
