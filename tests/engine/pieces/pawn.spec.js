@@ -9,7 +9,9 @@ describe('Pawn', () => {
     describe('white pawns', () => {
 
         let board;
-        beforeEach(() => board = new Board());    
+        beforeEach(() => {
+            board = new Board()
+        });    
         
         it('can only move one square up if they have already moved', () => {
             const pawn = new Pawn(Player.WHITE);
@@ -31,6 +33,26 @@ describe('Pawn', () => {
             moves.should.have.length(2);
             moves.should.deep.include.members([Square.at(2, 7), Square.at(3, 7)]);
         });
+
+        it('can caputure diagonally', () => {
+            const pawn = new Pawn(Player.WHITE);
+            board.setPiece(Square.at(1, 5), pawn);
+            const blackPawn = new Pawn(Player.BLACK);
+            const blackPawn2 = new Pawn(Player.BLACK);
+            board.setPiece(Square.at(2, 6), blackPawn);
+            board.setPiece(Square.at(2, 4), blackPawn2);
+
+            const moves = pawn.getAvailableMoves(board);
+
+            const expectedMoves = [
+                Square.at(2, 6),
+                Square.at(2, 4),
+                Square.at(2, 5),
+                Square.at(3, 5)
+            ]
+
+            moves.should.deep.include.members(expectedMoves);
+        })
 
     });
 
@@ -59,6 +81,26 @@ describe('Pawn', () => {
             moves.should.have.length(2);
             moves.should.deep.include.members([Square.at(4, 7), Square.at(5, 7)]);
         });
+
+        it('can caputure diagonally', () => {
+            const pawn = new Pawn(Player.BLACK);
+            board.setPiece(Square.at(6, 5), pawn);
+            const whitePawn = new Pawn(Player.WHITE);
+            const whitePawn2 = new Pawn(Player.WHITE);
+            board.setPiece(Square.at(5, 6), whitePawn);
+            board.setPiece(Square.at(5, 4), whitePawn2);
+
+            const moves = pawn.getAvailableMoves(board);
+
+            const expectedMoves = [
+                Square.at(5, 6),
+                Square.at(5, 4),
+                Square.at(5, 5),
+                Square.at(4, 5)
+            ]
+
+            moves.should.deep.include.members(expectedMoves);
+        })
 
     });
 

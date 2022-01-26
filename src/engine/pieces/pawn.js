@@ -8,18 +8,50 @@ export default class Pawn extends Piece {
     }
 
     getAvailableMoves(board) {
-        let location = board.findPiece(this)
+        let l = board.findPiece(this)
+        let moves = []
         if (this.player === Player.WHITE) {
-            if (location.row !== 1){
-                return [Square.at(location.row + 1, location.col)]
+            if (l.row !== 1){
+                moves = [Square.at(l.row + 1, l.col)]
             } else {
-                return ([Square.at(location.row + 1, location.col), Square.at(location.row + 2, location.col)])
+                moves = [Square.at(l.row + 1, l.col), Square.at(l.row + 2, l.col)];
             }
         } else {
-            if (location.row !== 6){
-                return [Square.at(location.row - 1, location.col)]
+            if (l.row !== 6){
+                moves = [Square.at(l.row - 1, l.col)]
             } else
-            return ([Square.at(location.row - 1, location.col), Square.at(location.row - 2, location.col)])
+            moves = [Square.at(l.row - 1, l.col), Square.at(l.row - 2, l.col)];
         }
+        // check if pawn can capture
+
+        if(this.player === Player.WHITE){
+            let pieceUpAndRight = board.getPiece(Square.at(l.row+1, l.col+1));
+            if (pieceUpAndRight){      
+                if (pieceUpAndRight.player === Player.BLACK){
+                    moves.push(Square.at(l.row+1, l.col+1));
+                }
+            }
+            let PieceUpAndLeft = board.getPiece(Square.at(l.row+1, l.col-1));
+            if (PieceUpAndLeft){
+                if (PieceUpAndLeft.player === Player.BLACK){
+                    moves.push(Square.at(l.row+1, l.col-1));
+                }
+            }
+        } else {
+            let pieceDownAndRight = board.getPiece(Square.at(l.row-1, l.col+1));
+            if (pieceDownAndRight){      
+                if (pieceDownAndRight.player === Player.WHITE){
+                    moves.push(Square.at(l.row-1, l.col+1));
+                }
+            }
+            let PieceDownAndLeft = board.getPiece(Square.at(l.row-1, l.col-1));
+            if (PieceDownAndLeft){
+                if (PieceDownAndLeft.player === Player.WHITE){
+                    moves.push(Square.at(l.row-1, l.col-1));
+                }
+            }
+        }
+
+        return moves
     }
 }

@@ -10,7 +10,6 @@ export default class Bishop extends Piece {
         let l = board.findPiece(this);
         let moves = [];
         for (let i=1; i<8; i++){
-            // towards top right corner
             if (Square.is_valid(l.row+i, l.col+i)) moves.push(Square.at(l.row+i, l.col+i))
             if (Square.is_valid(l.row-i, l.col+i)) moves.push(Square.at(l.row-i, l.col+i))
             if (Square.is_valid(l.row-i, l.col-i)) moves.push(Square.at(l.row-i, l.col-i));
