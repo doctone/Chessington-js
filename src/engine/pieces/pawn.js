@@ -52,6 +52,6 @@ export default class Pawn extends Piece {
             }
         }
 
-        return moves
+        return moves;
     }
 }

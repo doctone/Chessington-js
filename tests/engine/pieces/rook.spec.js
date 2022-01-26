@@ -7,10 +7,12 @@ import Square from '../../../src/engine/square';
 describe('Rook', () => {
 
     let board;
-    beforeEach(() => board = new Board());
+    let rook
+    beforeEach(() => {
+        board = new Board()
+        rook = new Rook(Player.WHITE)});
 
     it('can move laterally', () => {
-        const rook = new Rook(Player.WHITE);
         board.setPiece(Square.at(1, 2), rook);
 
         const moves = rook.getAvailableMoves(board);
@@ -26,11 +28,27 @@ describe('Rook', () => {
     });
 
     it('cannot make any other moves', () => {
-        const rook = new Rook(Player.WHITE);
         board.setPiece(Square.at(1, 2), rook);
 
         const moves = rook.getAvailableMoves(board);
 
         moves.should.have.length(14);
     });
+
+    // it('cannot move beyond its own pieces', () => {
+    //     board.setPiece(Square.at(1, 2), rook);
+    //     const knight = new Knight(Player.WHITE)
+    //     board.setPiece(Square.at(2,2), knight);
+
+    //     const expectedMoves = [
+    //         // horizontal
+    //         Square.at(1, 0), Square.at(1, 1), Square.at(1, 3), Square.at(1, 4), Square.at(1, 5), Square.at(1, 6), Square.at(1, 7),
+
+
+    //     ]
+
+    //     const moves = rook.getAvailableMoves(board);
+
+    //     moves.should.deep.include.members(expectedMoves);
+    // })
 });

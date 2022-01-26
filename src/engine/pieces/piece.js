@@ -12,9 +12,7 @@ export default class Piece {
         board.movePiece(currentSquare, newSquare);
     }
 
-    trimAvailableMoves(board){
-        let availableMoves = this.getAvailableMoves(board)
-        .filter(square => this.player !== board.getPiece(square).player);
-        return availableMoves
+    sameColour(piece){
+        return this.player === piece.player;
     }
 }
